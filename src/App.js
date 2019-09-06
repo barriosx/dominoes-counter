@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Header from './Components/Header'
 import Score from './Components/Score'
 import Setup from './Components/Setup'
@@ -28,11 +27,6 @@ function App() {
       <Header session={game} start={gameStart} newGame={newGame} />
       <Setup session={game} start={gameStart} handleSession={handleSession} handleGameConfig={handleGameConfig}/>
       <Score session={game} start={gameStart} gameSession={gameConfig} /> 
-      {/* <Router>
-
-
-        <Route path="/start/" render={props => <Start { ...props } extra={gameType} />}  />
-      </Router>  */}
     </div>
   );
 }
