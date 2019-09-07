@@ -1,0 +1,7 @@
+.game-type {
+  display: flex;
+  align-items: baseline;
+}
+.game-type > *:not(:last-child), .game-setup .game-players > *:not(:last-child) {
+  margin-right: 1rem;
+}

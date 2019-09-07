@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './style.css';
 
 const Setup = ({session, start, handleSession, handleGameConfig}) => {
   let gameType, playerNames; // Will hold html boiler plate
@@ -87,8 +88,9 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
     // Create a game if there isn't one created
      gameType = (
       <div className="game-type">
+        <p>Select game mode</p>
         {/* <button className="btn game-type ffa" onClick={() => setGameType('FFA')}>Free for All</button> */}
-        <button className="btn game-type 2v2" onClick={() => setGameType('2V2')}>Teams</button>
+        <button className="btn btn-secondary" onClick={() => setGameType('2V2')}>Teams</button>
       </div>
     );
     playerNames = null;
@@ -107,7 +109,7 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
               }
             )
           }
-          <button onClick={sendConfig}>Start Game!</button>   
+          <button className="btn btn-primary" onClick={sendConfig}>Start Game!</button>   
         </div>
       );
     }

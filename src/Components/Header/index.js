@@ -1,8 +1,9 @@
 import React from 'react';
+import './style.css';
 
 
 function Header({session, start , newGame}) {
-  let gameButton = session && start  ? <li><button onClick={newGame}>New Game</button></li> : null;
+  let gameButton = session && start  ? <li><button className="btn btn-secondary" onClick={newGame}>New Game</button></li> : null;
   return (
     <div className="header">
       <ul>

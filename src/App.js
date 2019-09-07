@@ -23,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="container">
       <Header session={game} start={gameStart} newGame={newGame} />
       <Setup session={game} start={gameStart} handleSession={handleSession} handleGameConfig={handleGameConfig}/>
       <Score session={game} start={gameStart} gameSession={gameConfig} /> 

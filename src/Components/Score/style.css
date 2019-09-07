@@ -1,0 +1,13 @@
+.game-scores-wrapper {
+
+}
+.game-scores {
+  display: flex;
+}
+.game-scores > * {
+  flex: 1;
+}
+
+.score-form >:not(:last-child) {
+  margin-right: 1rem;
+}

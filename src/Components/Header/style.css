@@ -1,0 +1,15 @@
+.header {
+  margin: 0rem;
+}
+.header ul {
+  display: flex;
+  align-items: baseline;
+  margin: 1rem 0rem;
+  list-style: none;
+  padding: 0;
+}
+
+.header ul li:not(:last-child) {
+  margin-right: 1rem;
+}
+
