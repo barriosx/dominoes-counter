@@ -5,3 +5,18 @@
 .game-type > *:not(:last-child), .game-setup .game-players > *:not(:last-child) {
   margin-right: 1rem;
 }
+
+@media screen and (max-width: 767px) {
+  .game-setup .game-players {
+    display: flex;
+    flex-direction: column;
+
+  }
+ .game-setup .game-players > *:not(:last-child) {
+    margin-bottom: 1rem;
+    margin-right: 0rem;
+  }
+  .game-type > *:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

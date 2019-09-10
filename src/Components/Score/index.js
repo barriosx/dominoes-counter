@@ -98,12 +98,16 @@ const Score = ({session, start, gameSession}) => {
   if (session && start) {
     return (
       <div className="game-scores-wrapper">
-        <h1>Round { round.length }</h1>
-        <p>Round Bonus: { round[round.length-1].bonus > 0 ? round[round.length-1].bonus : 'None' }</p>
+        <div className="score-header">
+          <h1>Round { round.length }</h1>
+          <p>Round Bonus: { round[round.length-1].bonus > 0 ? round[round.length-1].bonus : 'None' }</p>
+        </div>
         <div className="game-scores">
           <div className="team-1">
-            <h2>Team 1: { `${gameSession.players[0].name} and ${gameSession.players[1].name}` } </h2>
-            <p>Score: { team1Score }</p>
+            <div className="score-header">
+              <h2>Team 1: { `${gameSession.players[0].name} and ${gameSession.players[1].name}` } </h2>
+              <p className={team1Score > team2Score ? 'score-winning' : 'score-losing'}>Score: { team1Score }</p>
+            </div>
             <div className="score-form">
               <input placeholder="Points" name="team1" className="form-control" value={team1Points} onChange={handleChange}></input>
               <button className="btn btn-primary" onClick={() => handleScore(0,1)}>Regular Win</button>    
@@ -112,8 +116,10 @@ const Score = ({session, start, gameSession}) => {
             </div>
           </div>
           <div className="team-2">
+           <div className="score-header"> 
             <h2>Team 2: { `${gameSession.players[2].name} and ${gameSession.players[3].name}` } </h2>
-            <p>Score: { team2Score }</p>
+            <p className={ team2Score > team1Score ? 'score-winning' : 'score-losing'}>Score: { team2Score }</p>
+           </div>
             <div className="score-form">
               <input placeholder="Points" name="team2" className="form-control" value={team2Points} onChange={handleChange}></input>
               <button className="btn btn-primary" onClick={() => handleScore(0,2)}>Regular Win</button>    

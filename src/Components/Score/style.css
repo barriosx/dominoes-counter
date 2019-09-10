@@ -1,6 +1,3 @@
-.game-scores-wrapper {
-
-}
 .game-scores {
   display: flex;
 }
@@ -11,3 +8,53 @@
 .score-form >:not(:last-child) {
   margin-right: 1rem;
 }
+.score-form button {
+  flex: 1;
+}
+.score-winning {
+  font-weight: 500;
+  color: #18CC46;
+}
+
+.score-losing {
+  font-weight: 500;
+  color: #C6C9C6;
+}
+.score-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+@media screen and (max-width: 767px) {
+  .game-scores {
+    flex-direction: column;
+  }
+  .score-form {
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+
+  }
+  .score-form input {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .score-form >:not(:last-child) {
+    margin-right: 0rem;
+  }
+  .score-form button {
+    width: 31%;
+    flex: initial;
+  }
+  .score-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .score-header h2, .score-header p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+

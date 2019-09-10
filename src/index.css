@@ -6,7 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.header-brand {
+  font-size: 3rem;
+  font-weight: 600;
+}
 .btn { 
   color: #fff;
   padding: 1rem;
@@ -16,26 +19,32 @@ body {
   border-radius: 1.5rem;
   transition: background-color 0.3s cubic-bezier(0.23, 1, 0.320, 1)
 }
-
+.btn:active, .btn:focus {
+  outline: none;
+}
 .btn-primary {
   background-color: rgba(27, 109, 233, 0.8);
   
 }
-
 .btn-secondary {
   background-color: rgba(233, 27, 37, 0.8)
 }
 .btn-chuchazo {
   background-color: rgba(82, 27, 233, 0.8);
 }
-
 .btn-capicu {
   background-color: rgba(233, 85, 27, 0.8);
 
 }
-
 .form-control {
   padding: 1rem 0.5rem;
   border: 0.15rem solid #f4f6f5;
   border-radius: 0.25rem;
+}
+
+@media screen and (max-width: 767px) {
+  .header-brand {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
 }

@@ -7,7 +7,7 @@ function Header({session, start , newGame}) {
   return (
     <div className="header">
       <ul>
-        <li>CapiCount</li>
+        <li className="header-brand">CapiCount</li>
         {/* If there is a game in progress, offer new game, if not then only show logo */}
         {gameButton}
       </ul>
