@@ -18,12 +18,21 @@
 
 .score-losing {
   font-weight: 500;
-  color: #C6C9C6;
+  color: #919191;
 }
 .score-header {
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
+}
+.score-header h2, .score-header h1  {
+  margin-right: 0.5rem;
+}
+.bonus-on {
+  color: rgba(24, 204, 69, 0.685);
+}
+.bonus-off {
+  color: #454545;
 }
 @media screen and (max-width: 767px) {
   .game-scores {

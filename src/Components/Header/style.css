@@ -1,6 +1,7 @@
 .header {
   margin: 0rem;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 .header ul {
   display: flex;

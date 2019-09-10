@@ -100,7 +100,7 @@ const Score = ({session, start, gameSession}) => {
       <div className="game-scores-wrapper">
         <div className="score-header">
           <h1>Round { round.length }</h1>
-          <p>Round Bonus: { round[round.length-1].bonus > 0 ? round[round.length-1].bonus : 'None' }</p>
+          <p className={round[round.length-1].bonus > 0 ? 'bonus-on' : 'bonus-off'}>Bonus: { round[round.length-1].bonus > 0 ? round[round.length-1].bonus : 'None' }</p>
         </div>
         <div className="game-scores">
           <div className="team-1">
