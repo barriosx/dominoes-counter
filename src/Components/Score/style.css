@@ -29,6 +29,7 @@
   margin-right: 0.5rem;
 }
 .bonus-on {
+  font-weight: 500;
   color: rgba(24, 204, 69, 0.685);
 }
 .bonus-off {
@@ -59,7 +60,7 @@
   .score-header {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
   .score-header h2, .score-header p {
     margin-top: 0.5rem;

@@ -1,14 +1,14 @@
 .header {
   margin: 0rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 .header ul {
   display: flex;
   align-items: center;
-  margin: 1rem 0rem;
+  margin: 0rem;
   list-style: none;
-  padding: 0;
+  padding: 0rem;
 }
 
 .header ul li:not(:last-child) {

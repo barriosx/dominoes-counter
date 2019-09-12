@@ -1,15 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import './style.css'
+import ScoreHistory from '../ScoreHistory';
 
 const Score = ({session, start, gameSession}) => {
-  const [round, setRound] = useState([{number: 0, bonus: 100, winner: '', pointsWon: 0}]);
+  const [round, setRound] = useReducer((state,action) => {
+    switch (action.type) {
+      case "add": 
+        let arr = [];
+        switch (action.round) {
+          case 0:
+            arr = [...state];
+            arr[0].winner = action.team; arr[0].pointsWon = action.pointsWon; arr[0].win = action.win;
+            return [...arr,  {
+              number: state.length, 
+              bonus: 75, 
+              winner: 0, 
+              pointsWon: 0,
+              win: ''
+            }]; 
+          case 1:
+              arr = [...state];
+              arr[1].winner = action.team; arr[1].pointsWon = action.pointsWon; arr[1].win = action.win;
+              return [...arr,  {
+                number: state.length, 
+                bonus: 50, 
+                winner:  0, 
+                pointsWon: 0,
+                win: ''
+              }]; 
+          case 2:
+              arr = [...state];
+              arr[2].winner = action.team; arr[2].pointsWon = action.pointsWon; arr[2].win = action.win;
+              return [...arr,  {
+                number: state.length, 
+                bonus: 25, 
+                winner:  0, 
+                pointsWon: 0,
+                win: ''
+              }]; 
+          case (state.length-1):
+              arr = [...state];
+              arr[state.length-1].winner = action.team; arr[state.length-1].pointsWon = action.pointsWon; arr[state.length-1].win = action.win;
+              return [...arr,  {
+                number: state.length, 
+                bonus: 0, 
+                winner:  0, 
+                pointsWon: 0,
+                win: ''
+              }]; 
+        }
+        break;
+        case "clear":
+          return [{number: 0, bonus: 100, winner: 0, pointsWon: 0, win: ''}];
+        default: 
+          return state;
+    }
+  }, [{number: 0, bonus: 100, winner: 0, pointsWon: 0, win: ''}]);
+
   const [team1Points, setTeam1Points] =  useState();
   const [team2Points, setTeam2Points] = useState();
   const [team1Score, setTeam1Score] = useState(0);
   const [team2Score, setTeam2Score] = useState(0);
 
   const resetGame = () => {
-    setRound([{number: 0, bonus: 100, winner: '', pointsWon: 0}]);
+    setRound({type: 'clear'});
     setTeam1Score(0);
     setTeam2Score(0);
     setTeam1Points(0);
@@ -17,8 +71,6 @@ const Score = ({session, start, gameSession}) => {
   }
   useEffect(()=> {
     if(session && start) {
-      console.log(round);
-
     }
     else {
       resetGame();
@@ -36,51 +88,19 @@ const Score = ({session, start, gameSession}) => {
     }
   }, [team1Score,team2Score])
 
-  const handleScore = (bonus,team) => {
+  const handleScore = (bonus,team,winType) => {
     // Which team do we add the score to
-    const pointsWon = team === 1 ? team1Score + team1Points + bonus + round[round.length-1].bonus : team2Score + team2Points + bonus + round[round.length-1].bonus;
+    const pointsWon = team === 1 ?  team1Points + bonus + round[round.length-1].bonus : team2Points + bonus + round[round.length-1].bonus;
+    const newScore = team === 1 ? team1Score + pointsWon : team2Score + pointsWon;
+    
     if(team === 1) {
-      setTeam1Score(pointsWon)
+      setTeam1Score(newScore)
     }
     else {
-      setTeam2Score(pointsWon)
+      setTeam2Score(newScore)
     }
-    
+    setRound({type: 'add', round: round.length-1 ,pointsWon: team === 1 ? team1Points : team2Points, team: team, win: winType })
 
-    switch (round[round.length-1].number) {
-      case 0:
-        setRound([...round, {
-          number: round.length, 
-          bonus: 75, 
-          winner: team === 1 ? 'Team 1' : 'Team 2', 
-          pointsWon: pointsWon
-        }])
-        break;
-      case 1:
-        setRound([...round, {
-          number: round.length, 
-          bonus: 50,
-          winner: team === 1 ? 'Team 1' : 'Team 2', 
-          pointsWon: pointsWon
-        }])
-        break;
-      case 2:
-        setRound([...round, {
-          number: round.length,
-          bonus: 25,
-          winner: team === 1 ? 'Team 1' : 'Team 2', 
-          pointsWon: pointsWon
-        }])
-        break;
-      default:
-        setRound([...round, {
-          number: round.length,
-          bonus: 0,
-          winner: team === 1 ? 'Team 1' : 'Team 2', 
-          pointsWon: pointsWon
-        }])
-        break;
-    }
     setTeam1Points(0);
     setTeam2Points(0);
   }
@@ -110,22 +130,24 @@ const Score = ({session, start, gameSession}) => {
             </div>
             <div className="score-form">
               <input placeholder="Points" name="team1" className="form-control" value={team1Points} onChange={handleChange}></input>
-              <button className="btn btn-primary" onClick={() => handleScore(0,1)}>Regular Win</button>    
-              <button className="btn btn-capicu" onClick={() => handleScore(100,1)}>Capicu!</button>
-              <button className="btn btn-chuchazo" onClick={() => handleScore(100,1)}>Chuchazo!</button>
+              <button className="btn btn-primary" onClick={() => handleScore(0,1, 'Regular Win')}>Regular Win</button>    
+              <button className="btn btn-capicu" onClick={() => handleScore(100,1, 'Capicu')}>Capicu!</button>
+              <button className="btn btn-chuchazo" onClick={() => handleScore(100,1, 'Chuchazo')}>Chuchazo!</button>
             </div>
+            <ScoreHistory rounds={round} team="1" />
           </div>
           <div className="team-2">
-           <div className="score-header"> 
-            <h2>Team 2: { `${gameSession.players[2].name} and ${gameSession.players[3].name}` } </h2>
-            <p className={ team2Score > team1Score ? 'score-winning' : 'score-losing'}>Score: { team2Score }</p>
-           </div>
+            <div className="score-header"> 
+              <h2>Team 2: { `${gameSession.players[2].name} and ${gameSession.players[3].name}` } </h2>
+              <p className={ team2Score > team1Score ? 'score-winning' : 'score-losing'}>Score: { team2Score }</p>
+            </div>
             <div className="score-form">
               <input placeholder="Points" name="team2" className="form-control" value={team2Points} onChange={handleChange}></input>
-              <button className="btn btn-primary" onClick={() => handleScore(0,2)}>Regular Win</button>    
-              <button className="btn btn-capicu" onClick={() => handleScore(100,2)}>Capicu!</button>
-              <button className="btn btn-chuchazo" onClick={() => handleScore(100,2)}>Chuchazo!</button>
+              <button className="btn btn-primary" onClick={() => handleScore(0,2, 'Regular Win')}>Regular Win</button>    
+              <button className="btn btn-capicu" onClick={() => handleScore(100,2, 'Capicu')}>Capicu!</button>
+              <button className="btn btn-chuchazo" onClick={() => handleScore(100,2, 'Chuchazo')}>Chuchazo!</button>
             </div>
+            <ScoreHistory rounds={round} team="2" />
           </div>
         </div>
       </div>

@@ -1,0 +1,14 @@
+.scores-stats {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+.scores-stats > *:not(:last-child) {
+  margin-right: 1rem;
+}
+.score-round {
+  font-weight: 500;
+}
+
+
