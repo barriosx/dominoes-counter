@@ -1,16 +1,41 @@
 .game-type {
   display: flex;
   align-items: baseline;
+  color: white;
 }
 .game-type > *:not(:last-child), .game-setup .game-players > *:not(:last-child) {
   margin-right: 1rem;
 }
+.team-1 {
+  background: white;
+  padding: 1rem;
+  margin: 0em 1rem 0rem -1rem;
+}
+.team-2 {
+  background: white;
+  padding: 1rem;
+  margin: 0rem -1rem 0rem 0rem;
+}
 
 @media screen and (max-width: 767px) {
+  .team-1 {
+    background: white;
+    padding: 1rem;
+    margin: 0em -1rem 1rem;
+  }
+  .team-2 {
+    background: white;
+    padding: 1rem;
+    margin: 0rem -1rem;
+  }
   .game-setup .game-players {
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 2rem;
+    color: white;
+  }
+  .game-setup button {
+    width: 100%;
   }
  .game-setup .game-players > *:not(:last-child) {
     margin-bottom: 1rem;

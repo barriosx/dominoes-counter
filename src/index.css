@@ -1,5 +1,5 @@
 html,body {
-  background: #f5f6f4;
+  background: linear-gradient(45deg,#002a8f,#1a3f9a);
   height: 100%;
 }
 body {
@@ -13,6 +13,7 @@ body {
 .header-brand {
   font-size: 3rem;
   font-weight: 600;
+  color: white;
 }
 .btn { 
   color: #fff;
@@ -27,17 +28,17 @@ body {
   outline: none;
 }
 .btn-primary {
-  background-color: rgba(27, 109, 233, 0.8);
+  background-color: #cf142b;
   
 }
 .btn-secondary {
-  background-color: rgba(233, 27, 37, 0.8)
+  background-color: #7c0c1a;
 }
 .btn-chuchazo {
-  background-color: rgba(82, 27, 233, 0.8);
+  background-color: #667fbc
 }
 .btn-capicu {
-  background-color: rgba(233, 85, 27, 0.8);
+  background-color: #001956
 
 }
 .form-control {

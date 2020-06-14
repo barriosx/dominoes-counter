@@ -5,7 +5,7 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
   let gameType, playerNames; // Will hold html boiler plate
   
   const [config, setConfig] = useState({
-    type: '',
+    type: '2V2',
     players: [
       {
         name: '',
@@ -27,7 +27,7 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
   }); 
   useEffect(()=>{
     if (!session && !start) {
-      setConfig({  type: '',
+      setConfig({  type: '2V2',
       players: [
         {
           name: '',
@@ -54,6 +54,7 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
           wins: 0
         }
       ]})
+      handleSession(true); 
     }
   }, [session,start])
   const setGameType = game => {
@@ -79,6 +80,7 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
       alert("Fill in all player names before starting!")
     }
     else {
+      handleSession(true); // Changes state of game to true in App component 
       handleGameConfig(config); // Start the game!
     }
   }
@@ -86,29 +88,44 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
   // Set up Game Type and Player Names
   if(!session && !start) {
     // Create a game if there isn't one created
-     gameType = (
-      <div className="game-type">
-        <p>Select game mode</p>
-        {/* <button className="btn game-type ffa" onClick={() => setGameType('FFA')}>Free for All</button> */}
-        <button className="btn btn-secondary" onClick={() => setGameType('2V2')}>Teams</button>
-      </div>
-    );
-    playerNames = null;
+    //  gameType = (
+    //   <div className="game-type">
+    //     <p>Select game mode</p>
+    //     {/* <button className="btn game-type ffa" onClick={() => setGameType('FFA')}>Free for All</button> */}
+    //     <button className="btn btn-secondary" onClick={() => setGameType('2V2')}>Teams</button>
+    //   </div>
+    // );
+    // playerNames = null;
   }
   else {
     // Creating a game, need players
     gameType = null;
     if (config.type !== '') {
       playerNames = (
-        <div className="game-players">
-          {
-            config.players.map( (player,i) => {
-                return (
-                  <input key={i} className={i < 2 ? 'form-control team-1': 'form-control team-2'} placeholder={`Player ${i+1}`} value={player.name} onChange={handlePlayerNameChange(i)} />
-                );                
-              }
-            )
-          }
+        <div>
+          <div className="game-players">
+            <h3>Team 1</h3>
+            {
+              config.players.map( (player,i) => {
+                  if (i < 2) {
+                    return (
+                      <input key={i} className="form-control control-team-1" placeholder={`Player ${i+1}`} value={player.name} onChange={handlePlayerNameChange(i)} />
+                    );       
+                  }
+                }
+              )
+            }
+            <h3>Team 2</h3>
+            {
+              config.players.map( (player,i) => {
+                if (i > 1) {
+                  return (
+                    <input key={i} className="form-control control-team-1" placeholder={`Player ${i-1}`} value={player.name} onChange={handlePlayerNameChange(i)} />
+                  );       
+                }
+              })
+            }
+          </div>
           <button className="btn btn-primary" onClick={sendConfig}>Start Game!</button>   
         </div>
       );

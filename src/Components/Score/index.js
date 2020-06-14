@@ -100,25 +100,33 @@ const Score = ({session, start, gameSession}) => {
       setTeam2Score(newScore)
     }
     setRound({type: 'add', round: round.length-1 ,pointsWon: team === 1 ? team1Points : team2Points, team: team, win: winType })
-
+    
     setTeam1Points(0);
     setTeam2Points(0);
   }
 
   const handleChange = e => {
     if(e.target.name === 'team1') {
-      setTeam1Points(isNaN(e.target.value) ? 0 : Number(e.target.value))
+      if (!isNaN(e.target.value)) {
+        setTeam1Points(Number(e.target.value))        
+      }
     }
     else {
-      setTeam2Points(isNaN(e.target.value) ? 0 : Number(e.target.value))
+      if (!isNaN(e.target.value)) {
+        setTeam2Points(Number(e.target.value))
+      }
     }
   } 
-
+  const handleKeyDown = e => {
+    if  (e.keyCode === 8 && (e.target.value.length === 1)) {
+      e.target.value = "";
+    }
+  }
 
   if (session && start) {
     return (
       <div className="game-scores-wrapper">
-        <div className="score-header">
+        <div className="score-header-main">
           <h1>Round { round.length }</h1>
           <p className={round[round.length-1].bonus > 0 ? 'bonus-on' : 'bonus-off'}>Bonus: { round[round.length-1].bonus > 0 ? round[round.length-1].bonus : 'None' }</p>
         </div>
@@ -126,10 +134,10 @@ const Score = ({session, start, gameSession}) => {
           <div className="team-1">
             <div className="score-header">
               <h2>Team 1: { `${gameSession.players[0].name} and ${gameSession.players[1].name}` } </h2>
-              <p className={team1Score > team2Score ? 'score-winning' : 'score-losing'}>Score: { team1Score }</p>
+              <p className={team1Score > team2Score ? 'score-winning' : 'score-losing'}><b>Score: { team1Score }</b></p>
             </div>
             <div className="score-form">
-              <input placeholder="Points" name="team1" className="form-control" value={team1Points} onChange={handleChange}></input>
+              <input placeholder="Points" name="team1" value={team1Points} className="form-control" onChange={handleChange} onKeyDown={handleKeyDown}></input>
               <button className="btn btn-primary" onClick={() => handleScore(0,1, 'Regular Win')}>Regular Win</button>    
               <button className="btn btn-capicu" onClick={() => handleScore(100,1, 'Capicu')}>Capicu!</button>
               <button className="btn btn-chuchazo" onClick={() => handleScore(100,1, 'Chuchazo')}>Chuchazo!</button>
@@ -139,10 +147,10 @@ const Score = ({session, start, gameSession}) => {
           <div className="team-2">
             <div className="score-header"> 
               <h2>Team 2: { `${gameSession.players[2].name} and ${gameSession.players[3].name}` } </h2>
-              <p className={ team2Score > team1Score ? 'score-winning' : 'score-losing'}>Score: { team2Score }</p>
+              <p className={ team2Score > team1Score ? 'score-winning' : 'score-losing'}><b>Score: { team2Score }</b></p>
             </div>
             <div className="score-form">
-              <input placeholder="Points" name="team2" className="form-control" value={team2Points} onChange={handleChange}></input>
+              <input placeholder="Points" name="team2" value={team2Points} className="form-control" onChange={handleChange} onKeyDown={handleKeyDown}></input>
               <button className="btn btn-primary" onClick={() => handleScore(0,2, 'Regular Win')}>Regular Win</button>    
               <button className="btn btn-capicu" onClick={() => handleScore(100,2, 'Capicu')}>Capicu!</button>
               <button className="btn btn-chuchazo" onClick={() => handleScore(100,2, 'Chuchazo')}>Chuchazo!</button>

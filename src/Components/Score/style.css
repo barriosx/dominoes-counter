@@ -4,7 +4,10 @@
 .game-scores > * {
   flex: 1;
 }
-
+.score-form {
+  display: flex;
+  flex-wrap: wrap;
+}
 .score-form >:not(:last-child) {
   margin-right: 1rem;
 }
@@ -25,12 +28,20 @@
   justify-content: flex-start;
   align-items: baseline;
 }
-.score-header h2, .score-header h1  {
+.score-header-main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  background: white;
+  padding: 0rem 1rem;
+  margin: 0rem -1rem 1rem;
+}
+.score-header h2, .score-header h1, .score-header-main h2, .score-header-main h1  {
   margin-right: 0.5rem;
 }
 .bonus-on {
   font-weight: 500;
-  color: rgba(24, 204, 69, 0.685);
+  color: rgba(24, 204, 69, 1);
 }
 .bonus-off {
   color: #454545;
@@ -62,9 +73,20 @@
     justify-content: space-between;
     flex-direction: column;
   }
+  .score-header-main {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+  .score-header-main p {
+    margin-right: 0.5rems;
+  }
   .score-header h2, .score-header p {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+  }
+  .score-header p {
+    font-size: 1.25rem;
   }
 }
 
