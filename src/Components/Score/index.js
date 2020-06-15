@@ -61,6 +61,7 @@ const Score = ({session, start, gameSession}) => {
   const [team2Points, setTeam2Points] = useState();
   const [team1Score, setTeam1Score] = useState(0);
   const [team2Score, setTeam2Score] = useState(0);
+  const [winner, setWinner] = useState();
 
   const resetGame = () => {
     setRound({type: 'clear'});
@@ -80,11 +81,13 @@ const Score = ({session, start, gameSession}) => {
   useEffect(()=> {
     if(team1Score >= 500) {
       alert('team 1 wins')
-      resetGame();
+      setWinner('1');
+      // resetGame();
     }
     else if(team2Score >= 500) {
       alert('team 2 wins')
-      resetGame();
+      setWinner('2');
+      // resetGame();
     }
   }, [team1Score,team2Score])
 
@@ -138,9 +141,9 @@ const Score = ({session, start, gameSession}) => {
             </div>
             <div className="score-form">
               <input placeholder="Points" name="team1" value={team1Points} className="form-control" onChange={handleChange} onKeyDown={handleKeyDown}></input>
-              <button className="btn btn-primary" onClick={() => handleScore(0,1, 'Regular Win')}>Regular Win</button>    
-              <button className="btn btn-capicu" onClick={() => handleScore(100,1, 'Capicu')}>Capicu!</button>
-              <button className="btn btn-chuchazo" onClick={() => handleScore(100,1, 'Chuchazo')}>Chuchazo!</button>
+              <button className="btn btn-primary" onClick={() => handleScore(0,1, 'Regular Win')} disabled={typeof(winner) != 'undefined'}>Regular Win</button>    
+              <button className="btn btn-capicu" onClick={() => handleScore(100,1, 'Capicu')} disabled={typeof(winner) != 'undefined'}>Capicu!</button>
+              <button className="btn btn-chuchazo" onClick={() => handleScore(100,1, 'Chuchazo')} disabled={typeof(winner) != 'undefined'}>Chuchazo!</button>
             </div>
             <ScoreHistory rounds={round} team="1" />
           </div>
@@ -151,9 +154,9 @@ const Score = ({session, start, gameSession}) => {
             </div>
             <div className="score-form">
               <input placeholder="Points" name="team2" value={team2Points} className="form-control" onChange={handleChange} onKeyDown={handleKeyDown}></input>
-              <button className="btn btn-primary" onClick={() => handleScore(0,2, 'Regular Win')}>Regular Win</button>    
-              <button className="btn btn-capicu" onClick={() => handleScore(100,2, 'Capicu')}>Capicu!</button>
-              <button className="btn btn-chuchazo" onClick={() => handleScore(100,2, 'Chuchazo')}>Chuchazo!</button>
+              <button className="btn btn-primary" onClick={() => handleScore(0,2, 'Regular Win')} disabled={typeof(winner) != 'undefined'}>Regular Win</button>    
+              <button className="btn btn-capicu" onClick={() => handleScore(100,2, 'Capicu')} disabled={typeof(winner) != 'undefined'}>Capicu!</button>
+              <button className="btn btn-chuchazo" onClick={() => handleScore(100,2, 'Chuchazo')} disabled={typeof(winner) != 'undefined'}>Chuchazo!</button>
             </div>
             <ScoreHistory rounds={round} team="2" />
           </div>
