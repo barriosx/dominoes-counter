@@ -47,7 +47,9 @@ const Score = ({session, start, gameSession}) => {
                 winner:  0, 
                 pointsWon: 0,
                 win: ''
-              }]; 
+              }];
+          default:
+            break; 
         }
         break;
         case "clear":
@@ -61,7 +63,7 @@ const Score = ({session, start, gameSession}) => {
   const [team2Points, setTeam2Points] = useState();
   const [team1Score, setTeam1Score] = useState(0);
   const [team2Score, setTeam2Score] = useState(0);
-  const [winner, setWinner] = useState();
+  const [winner, setWinner] = useState('');
 
   const resetGame = () => {
     setRound({type: 'clear'});
@@ -76,7 +78,7 @@ const Score = ({session, start, gameSession}) => {
     else {
       resetGame();
     }
-  }, [start])
+  }, [start,session])
   
   useEffect(()=> {
     if(team1Score >= 500) {
