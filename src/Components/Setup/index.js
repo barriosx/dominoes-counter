@@ -54,14 +54,10 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
           wins: 0
         }
       ]})
-      // handleSession(true); 
+
     }
   }, [session,start])
-  // const setGameType = game => {
-  //   // This function helps set up the "config" state inside this Setup component, as well as lifting up the state of "game" in the App component
-  //   setConfig({ ...config, type: game });
-  //   handleSession(true); // Changes state of game to true in App component 
-  // }
+
   const handlePlayerNameChange = formIndex => e => {
     // Handle all player names
     const newPlayers = config.players.map((player, i)=>{

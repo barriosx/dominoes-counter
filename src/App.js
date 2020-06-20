@@ -5,7 +5,7 @@ import Setup from './Components/Setup'
 import './App.css';
 
 function App() {
-  const [game, setGame] = useState(false);
+  const [game, setGame] = useState(true);
   const [gameStart, setGameStart] = useState(false);
   const [gameConfig, setGameConfig] = useState([]);
 
