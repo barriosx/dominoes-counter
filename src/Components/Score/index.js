@@ -143,9 +143,9 @@ const Score = ({session, start, gameSession}) => {
             </div>
             <div className="score-form">
               <input placeholder="Points" name="team1" value={team1Points} className="form-control" onChange={handleChange} onKeyDown={handleKeyDown}></input>
-              <button className="btn btn-primary" onClick={() => handleScore(0,1, 'Regular Win')} disabled={typeof(winner) != 'undefined'}>Regular Win</button>    
-              <button className="btn btn-capicu" onClick={() => handleScore(100,1, 'Capicu')} disabled={typeof(winner) != 'undefined'}>Capicu!</button>
-              <button className="btn btn-chuchazo" onClick={() => handleScore(100,1, 'Chuchazo')} disabled={typeof(winner) != 'undefined'}>Chuchazo!</button>
+              <button className="btn btn-primary" onClick={() => handleScore(0,1, 'Regular Win')} disabled={winner.length > 0}>Regular Win</button>    
+              <button className="btn btn-capicu" onClick={() => handleScore(100,1, 'Capicu')} disabled={winner.length > 0}>Capicu!</button>
+              <button className="btn btn-chuchazo" onClick={() => handleScore(100,1, 'Chuchazo')} disabled={winner.length > 0}>Chuchazo!</button>
             </div>
             <ScoreHistory rounds={round} team="1" />
           </div>
@@ -156,9 +156,9 @@ const Score = ({session, start, gameSession}) => {
             </div>
             <div className="score-form">
               <input placeholder="Points" name="team2" value={team2Points} className="form-control" onChange={handleChange} onKeyDown={handleKeyDown}></input>
-              <button className="btn btn-primary" onClick={() => handleScore(0,2, 'Regular Win')} disabled={typeof(winner) != 'undefined'}>Regular Win</button>    
-              <button className="btn btn-capicu" onClick={() => handleScore(100,2, 'Capicu')} disabled={typeof(winner) != 'undefined'}>Capicu!</button>
-              <button className="btn btn-chuchazo" onClick={() => handleScore(100,2, 'Chuchazo')} disabled={typeof(winner) != 'undefined'}>Chuchazo!</button>
+              <button className="btn btn-primary" onClick={() => handleScore(0,2, 'Regular Win')} disabled={winner.length > 0}>Regular Win</button>    
+              <button className="btn btn-capicu" onClick={() => handleScore(100,2, 'Capicu')} disabled={winner.length > 0}>Capicu!</button>
+              <button className="btn btn-chuchazo" onClick={() => handleScore(100,2, 'Chuchazo')} disabled={winner.length > 0}>Chuchazo!</button>
             </div>
             <ScoreHistory rounds={round} team="2" />
           </div>

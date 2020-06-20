@@ -16,6 +16,12 @@
   padding: 1rem;
   margin: 0rem -1rem 0rem 0rem;
 }
+.game-setup .game-players {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+  color: white;
+}
 
 @media screen and (max-width: 767px) {
   .team-1 {
