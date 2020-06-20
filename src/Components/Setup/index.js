@@ -54,7 +54,7 @@ const Setup = ({session, start, handleSession, handleGameConfig}) => {
           wins: 0
         }
       ]})
-      handleSession(true); 
+      // handleSession(true); 
     }
   }, [session,start])
   // const setGameType = game => {
